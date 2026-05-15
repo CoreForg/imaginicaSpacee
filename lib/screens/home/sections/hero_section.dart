@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/responsive.dart';
 import '../../../providers/home_navigation_provider.dart';
+import '../../../providers/stats_provider.dart';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
@@ -184,12 +185,7 @@ class _StatsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final stats = [
-      ('20+', 'Projects Delivered'),
-      ('15+', 'Happy Clients'),
-      ('3+', 'Years Experience'),
-      ('99%', 'Client Satisfaction'),
-    ];
+    final stats = context.watch<StatsProvider>().stats;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
@@ -202,7 +198,9 @@ class _StatsRow extends StatelessWidget {
         alignment: WrapAlignment.center,
         spacing: 40,
         runSpacing: 24,
-        children: stats.map((s) => _StatItem(value: s.$1, label: s.$2)).toList(),
+        children: stats
+            .map((s) => _StatItem(value: s.value, label: s.label))
+            .toList(),
       ),
     ).animate().fadeIn(delay: 800.ms, duration: 800.ms).slideY(begin: 0.1, end: 0);
   }
