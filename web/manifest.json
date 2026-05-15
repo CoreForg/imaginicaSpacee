@@ -1,11 +1,11 @@
 {
-    "name": "portfolio_website",
-    "short_name": "portfolio_website",
+    "name": "Imaginica Space",
+    "short_name": "Imaginica",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#09090B",
+    "theme_color": "#3B82F6",
+    "description": "Premium Digital Product Studio — mobile apps, SaaS platforms, and startup MVPs at affordable pricing.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

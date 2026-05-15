@@ -97,11 +97,22 @@ class _LogoBlock extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        RichText(
-          text: TextSpan(children: [
-            TextSpan(text: 'Imaginica', style: GoogleFonts.inter(color: AppColors.primaryText, fontSize: 20, fontWeight: FontWeight.w800)),
-            TextSpan(text: ' Space', style: GoogleFonts.inter(color: AppColors.accent, fontSize: 20, fontWeight: FontWeight.w800)),
-          ]),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'assets/images/logo.png',
+              height: 24,
+              filterQuality: FilterQuality.high,
+            ),
+            const SizedBox(width: 10),
+            RichText(
+              text: TextSpan(children: [
+                TextSpan(text: 'Imaginica', style: GoogleFonts.inter(color: AppColors.primaryText, fontSize: 20, fontWeight: FontWeight.w800)),
+                TextSpan(text: ' Space', style: GoogleFonts.inter(color: AppColors.accent, fontSize: 20, fontWeight: FontWeight.w800)),
+              ]),
+            ),
+          ],
         ),
         const SizedBox(height: 12),
         ConstrainedBox(

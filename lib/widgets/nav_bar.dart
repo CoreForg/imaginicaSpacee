@@ -46,29 +46,40 @@ class NavBar extends StatelessWidget {
                 onLongPress: () => Navigator.pushNamed(context, '/admin'),
                 child: MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'Imaginica',
-                          style: GoogleFonts.inter(
-                            color: AppColors.primaryText,
-                            fontSize: isMobile ? 18 : 22,
-                            fontWeight: FontWeight.w800,
-                            letterSpacing: -0.5,
-                          ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Image.asset(
+                        'assets/images/logo.png',
+                        height: isMobile ? 24 : 28,
+                        filterQuality: FilterQuality.high,
+                      ),
+                      const SizedBox(width: 10),
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'Imaginica',
+                              style: GoogleFonts.inter(
+                                color: AppColors.primaryText,
+                                fontSize: isMobile ? 18 : 22,
+                                fontWeight: FontWeight.w800,
+                                letterSpacing: -0.5,
+                              ),
+                            ),
+                            TextSpan(
+                              text: ' Space',
+                              style: GoogleFonts.inter(
+                                color: AppColors.accent,
+                                fontSize: isMobile ? 18 : 22,
+                                fontWeight: FontWeight.w800,
+                                letterSpacing: -0.5,
+                              ),
+                            ),
+                          ],
                         ),
-                        TextSpan(
-                          text: ' Space',
-                          style: GoogleFonts.inter(
-                            color: AppColors.accent,
-                            fontSize: isMobile ? 18 : 22,
-                            fontWeight: FontWeight.w800,
-                            letterSpacing: -0.5,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),

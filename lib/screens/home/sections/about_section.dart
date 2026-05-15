@@ -76,7 +76,7 @@ class AboutSection extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'Our team has hands-on experience contributing to enterprise-grade Flutter projects including the IRCTC Rail Connect platform (CRIS), and actively builds scalable digital solutions for businesses and startups across industries.',
+                      'We partner with founders, startups, and growing businesses to deliver affordable, premium-quality digital products — from cross-platform mobile apps and SaaS platforms to full-stack systems built for scale.',
                       style: GoogleFonts.inter(
                         color: AppColors.secondaryText,
                         fontSize: 16,
