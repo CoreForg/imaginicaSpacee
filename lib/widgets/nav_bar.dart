@@ -122,12 +122,12 @@ class _NavBarItemState extends State<_NavBarItem> {
       padding: const EdgeInsets.symmetric(horizontal: 14),
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
-        onEnter: (_) => WidgetsBinding.instance.addPostFrameCallback((_) {
+        onEnter: (_) {
           if (mounted) setState(() => _isHovered = true);
-        }),
-        onExit: (_) => WidgetsBinding.instance.addPostFrameCallback((_) {
+        },
+        onExit: (_) {
           if (mounted) setState(() => _isHovered = false);
-        }),
+        },
         child: GestureDetector(
           onTap: () => widget.provider.scrollTo(widget.section),
           child: Column(
@@ -150,7 +150,7 @@ class _NavBarItemState extends State<_NavBarItem> {
               AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
                 height: 2,
-                width: isActive ? 20 : 0,
+                width: isActive || _isHovered ? 20 : 0,
                 decoration: BoxDecoration(
                   color: AppColors.accent,
                   borderRadius: BorderRadius.circular(2),
@@ -179,12 +179,12 @@ class _ContactButtonState extends State<_ContactButton> {
   Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
-      onEnter: (_) => WidgetsBinding.instance.addPostFrameCallback((_) {
+      onEnter: (_) {
         if (mounted) setState(() => _isHovered = true);
-      }),
-      onExit: (_) => WidgetsBinding.instance.addPostFrameCallback((_) {
+      },
+      onExit: (_) {
         if (mounted) setState(() => _isHovered = false);
-      }),
+      },
       child: GestureDetector(
         onTap: () => widget.navProvider.scrollTo('contact'),
         child: AnimatedContainer(

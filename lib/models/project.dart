@@ -30,136 +30,228 @@ class Project {
 
 const List<Project> kProjects = [
   Project(
-    id: 'food-delivery',
-    title: 'Swiggy-Style Food Delivery App',
-    tagline: 'End-to-end food delivery platform with real-time tracking',
+    id: 'supplix',
+    title: 'Supplix',
+    tagline: 'Full business ecosystem platform for modern enterprises',
     description:
-        'A full-scale food delivery platform with real-time tracking, complex state management, and a seamless user experience.',
-    techStack: ['Flutter', 'Firebase', 'Google Maps API', 'Provider', 'Node.js'],
-    categories: ['Mobile Apps', 'Firebase', 'Full Stack'],
-    overview:
-        'Built a production-grade food delivery application from the ground up, covering the full lifecycle — from user onboarding and restaurant discovery to real-time order tracking and payment integration.',
-    problem:
-        'Restaurant chains needed a scalable, branded mobile ordering platform with live order tracking without the dependency on third-party marketplaces that cut into margins.',
-    solution:
-        'Designed and developed a white-label Flutter app with Firebase Realtime Database for live order updates, Google Maps integration for delivery tracking, and a Stripe payment flow — all within an 8-week sprint.',
-    features: [
-      'Real-time GPS order tracking with Google Maps',
-      'Multi-restaurant support with dynamic menus',
-      'Stripe payment integration with saved cards',
-      'Push notifications via Firebase Cloud Messaging',
-      'Admin dashboard for order management',
-      'Loyalty points and coupon system',
-    ],
-    architecture:
-        'MVVM architecture using Provider for state management. Firebase Firestore for real-time data sync. Node.js microservice for payment processing. Cloud Functions for order lifecycle automation.',
-    results:
-        'Reduced order processing time by 35%. Achieved a 99.8% crash-free session rate. Successfully onboarded 5+ restaurant chains within the first month of launch.',
-  ),
-  Project(
-    id: 'ai-saas-dashboard',
-    title: 'AI SaaS Analytics Dashboard',
-    tagline: 'Premium analytics platform with integrated AI insights',
-    description:
-        'A premium analytics dashboard integrating AI insights with modern data visualization for SaaS businesses.',
-    techStack: ['Flutter Web', 'Dart', 'REST APIs', 'Firebase', 'Chart Libraries'],
-    categories: ['AI SaaS', 'Dashboards', 'Flutter Web', 'Full Stack'],
-    overview:
-        'Designed and developed a multi-tenant SaaS analytics platform enabling business owners to monitor KPIs, generate AI-powered summaries, and make data-driven decisions through an intuitive dashboard.',
-    problem:
-        'SaaS companies were dealing with fragmented data across multiple tools. Founders needed a single unified dashboard that could surface critical business insights in real time without requiring a dedicated data analyst.',
-    solution:
-        'Built a Flutter Web application with a modular dashboard system, role-based access control, and integration with AI text-generation APIs to auto-summarize trends and anomalies in business data.',
-    features: [
-      'AI-powered trend summaries and anomaly detection',
-      'Interactive charts with drill-down capability',
-      'Multi-tenant architecture with RBAC',
-      'CSV/PDF export for reports',
-      'Real-time data refresh via WebSockets',
-      'Customizable widget grid layout',
-    ],
-    architecture:
-        'Flutter Web with a component-based widget system. REST API integration layer with caching. Firebase Auth for multi-tenant session management. AI summarization powered by external LLM API.',
-    results:
-        'Reduced reporting time by 60%. Dashboard adopted by 3 enterprise clients within the pilot phase. Received a Net Promoter Score of 72.',
-  ),
-  Project(
-    id: 'restaurant-management',
-    title: 'Restaurant Management MVP',
-    tagline: 'End-to-end POS and management system for modern restaurants',
-    description:
-        'An end-to-end management system for modern restaurants including POS, inventory, and online ordering.',
-    techStack: ['Flutter', 'Firebase', 'Node.js', 'PostgreSQL'],
+        'A comprehensive business management ecosystem featuring a Flutter client app, admin app, marketing website, and a Windows/Linux desktop admin panel — all backed by a Spring Boot microservice backend.',
+    techStack: ['Flutter', 'Spring Boot', 'PostgreSQL', 'REST APIs', 'Desktop'],
     categories: ['Mobile Apps', 'Full Stack', 'Startup MVP'],
     overview:
-        'Delivered a complete restaurant management MVP for a startup client in 6 weeks — covering table management, digital POS, real-time inventory tracking, and customer-facing ordering via QR codes.',
+        'Supplix is a complete digital business platform built from the ground up. It covers every layer of a business operation — customer-facing mobile app, internal admin mobile app, a marketing website, and a cross-platform desktop admin panel for Windows and Linux.',
     problem:
-        'A restaurant startup needed to go live quickly with a full-featured management system but had a limited budget and a tight launch deadline.',
+        'Businesses needed a unified ecosystem to manage clients, operations, and internal administration without juggling multiple disconnected tools and platforms.',
     solution:
-        'Leveraged Flutter for rapid cross-platform UI development and Firebase for zero-setup backend infrastructure, enabling an MVP delivery in 6 weeks that covered all core workflows.',
+        'Designed and developed an integrated ecosystem: a Flutter client app for end users, a Flutter admin app for field managers, a marketing website, and a Flutter desktop admin panel — all communicating with a robust Spring Boot + PostgreSQL backend.',
     features: [
-      'Digital POS with split billing support',
-      'Real-time inventory management with low-stock alerts',
-      'QR code-based customer menu and ordering',
-      'Staff management with role permissions',
-      'Daily revenue and sales analytics',
-      'Kitchen display system integration',
+      'Flutter client app for end users (Android & iOS)',
+      'Flutter admin mobile app for managers',
+      'Marketing website for brand presence',
+      'Desktop admin panel for Windows & Linux',
+      'Spring Boot REST API backend',
+      'PostgreSQL database with relational data modeling',
+      'Role-based access control across all platforms',
+      'Real-time data sync across client and admin interfaces',
     ],
     architecture:
-        'Flutter cross-platform app targeting Android tablets for POS use. Firebase Firestore for real-time data. Node.js server for complex billing logic and report generation. PostgreSQL for long-term data persistence.',
+        'Multi-platform Flutter apps sharing a common design system. Spring Boot REST API with JWT authentication. PostgreSQL for relational data persistence. Desktop app built with Flutter targeting Windows and Linux.',
     results:
-        'MVP launched in 6 weeks. Onboarded 3 restaurant locations at launch. Reduced order errors by 70% compared to manual processes.',
+        'Delivered a production-ready, multi-platform business ecosystem. Unified 4 separate products under one backend, enabling consistent data flow and drastically reducing operational overhead.',
   ),
   Project(
-    id: 'booking-platform',
-    title: 'Scalable Booking Platform',
-    tagline: 'Concurrent reservation system with enterprise-grade reliability',
-    description: 'Scalable booking system handling concurrent reservations with high reliability.',
-    techStack: ['Flutter', 'Spring Boot', 'PostgreSQL', 'Firebase'],
-    categories: ['Mobile Apps', 'Full Stack', 'Firebase'],
+    id: 'grocery-app',
+    title: 'Grocery App',
+    tagline: 'Smart grocery shopping and delivery application',
+    description:
+        'A grocery shopping and delivery app with intuitive product browsing, cart management, and a smooth ordering system — built for fast, reliable everyday use.',
+    techStack: ['Flutter', 'Firebase', 'Firestore', 'Firebase Auth'],
+    categories: ['Mobile Apps', 'Firebase'],
     overview:
-        'Architected and built a high-concurrency booking platform for a services business, handling simultaneous reservations without race conditions or double-bookings through a robust backend.',
+        'A feature-rich grocery delivery application that simplifies the daily shopping experience. Users can browse categories, search products, manage their cart, and place orders with real-time status tracking.',
     problem:
-        'The client\'s existing booking system was experiencing double-booking issues and frequent downtime during peak hours, leading to customer complaints and revenue loss.',
+        'Shoppers needed a fast, friction-free mobile app to browse local grocery inventory and place delivery orders without the complexity of large marketplace apps.',
     solution:
-        'Redesigned the booking architecture using Spring Boot with optimistic locking at the database level to prevent race conditions. Built a clean Flutter frontend with a real-time availability calendar.',
+        'Built a clean Flutter app with a category-driven product catalog, smart search, a persistent cart powered by Firebase, and a streamlined checkout flow. Firebase enabled real-time order updates without heavy backend setup.',
     features: [
-      'Real-time availability calendar with instant updates',
-      'Concurrent booking protection via database locking',
-      'Automated confirmation emails and reminders',
-      'Dynamic pricing based on demand',
-      'Admin portal for booking management',
-      'Cancellation and rescheduling workflows',
+      'Category and sub-category product browsing',
+      'Smart product search with filtering',
+      'Persistent shopping cart with quantity management',
+      'Seamless checkout and order placement',
+      'Real-time order status tracking',
+      'Firebase Auth for secure user accounts',
+      'Order history and reordering',
     ],
     architecture:
-        'Spring Boot REST API with PostgreSQL and optimistic locking for concurrency control. Flutter mobile + web frontend. Firebase for real-time calendar updates and push notifications.',
+        'Flutter with Provider for state management. Firebase Firestore for product catalog and order management. Firebase Auth for user authentication. Cloud Functions for order notifications.',
     results:
-        'Zero double-booking incidents post-launch. System uptime reached 99.9%. Booking completion rate improved by 45% due to reduced friction.',
+        'Delivered a production-ready grocery app with real-time sync. Smooth UI achieved sub-2-second load times for product listings across catalog pages.',
   ),
   Project(
-    id: 'ecommerce-ui',
-    title: 'Modern E-Commerce Platform',
-    tagline: 'Premium e-commerce UI/UX with smooth microinteractions',
-    description: 'A pixel-perfect, premium e-commerce platform with smooth microinteractions and a modern design system.',
-    techStack: ['Flutter', 'Firebase', 'Stripe', 'Provider'],
-    categories: ['Mobile Apps', 'UI/UX', 'Firebase'],
+    id: 'voucher-vault',
+    title: 'Voucher Vault',
+    tagline: 'Discover and save the best offers in one place',
+    description:
+        'An offer and coupon collection platform that aggregates deals from websites and apps, giving users a single hub to discover, save, and redeem discounts.',
+    techStack: ['Flutter', 'Firebase', 'REST APIs', 'API Integration'],
+    categories: ['Mobile Apps', 'Firebase'],
     overview:
-        'Designed and developed a premium mobile e-commerce application with a focus on exceptional UI/UX, smooth animations, and a streamlined purchase flow that drives higher conversion.',
+        'Voucher Vault is a deal aggregation app that pulls coupons and offers from multiple sources via API integrations, presenting them in a clean, browsable UI. Users can bookmark deals, filter by category, and access redemption links instantly.',
     problem:
-        'The client\'s existing app had a high cart abandonment rate and poor user reviews related to the confusing navigation and slow checkout experience.',
+        'Consumers waste time hunting for valid coupons across dozens of websites and apps. There was no single, clean mobile platform to discover and access the best active deals.',
     solution:
-        'Rebuilt the app with a focus on design excellence — implementing smooth page transitions, instant product search with Algolia, and a one-tap checkout flow. Every interaction was optimized to reduce friction.',
+        'Built a Flutter app that aggregates deals via external APIs and Firebase-stored promotions. A smart categorization system and search help users quickly find relevant offers, while bookmarking ensures their favourite deals are always accessible.',
     features: [
-      'Instant product search with filters and sorting',
-      'Wishlist and persistent cart across devices',
-      'One-tap checkout with saved payments',
-      'Animated product gallery with zoom',
-      'Personalized product recommendations',
-      'Order tracking with push notifications',
+      'Aggregated deals from websites and apps via APIs',
+      'Category-based coupon browsing',
+      'Smart search and filtering by brand or discount',
+      'Bookmark and save favourite offers',
+      'One-tap redemption link access',
+      'Expiry tracking with deal validity indicators',
+      'Push notifications for new deals in saved categories',
     ],
     architecture:
-        'Flutter with custom animation layer using flutter_animate. Firebase as backend. Stripe for secure payment processing. Provider for cart and user state management.',
+        'Flutter with Riverpod for reactive state management. Firebase Firestore for curated deal storage. External coupon/offer APIs integrated via a REST layer. Firebase Cloud Messaging for deal notifications.',
     results:
-        'Cart abandonment reduced by 38%. Average session duration increased by 2.4 minutes. App Store rating improved from 3.2 to 4.7 stars.',
+        'Aggregated 500+ active deals at launch. Delivered a clean browsing experience with instant search across all categories and integrated push notification system.',
+  ),
+  Project(
+    id: 'shopapp',
+    title: 'ShopApp',
+    tagline: 'Premium e-commerce shopping experience inspired by Amazon',
+    description:
+        'A full-featured e-commerce app inspired by Amazon and Flipkart, with product listings, cart management, order placement, and a polished shopping experience.',
+    techStack: ['Flutter', 'Firebase', 'Provider', 'Firebase Auth'],
+    categories: ['Mobile Apps', 'Firebase', 'UI/UX'],
+    overview:
+        'ShopApp is a premium e-commerce mobile application that brings the big-marketplace experience to a clean, fast Flutter app. Features include rich product listings, search, cart, and a full checkout to order management flow.',
+    problem:
+        'Building a scalable, feature-complete e-commerce app that matches the functionality expectations of users familiar with Amazon and Flipkart while keeping the codebase clean and maintainable.',
+    solution:
+        'Designed a modular Flutter architecture with Provider for cart and user state. Firebase powers the product catalog, orders, and auth. The UI focuses on conversion — fast browsing, clear CTAs, and a frictionless checkout.',
+    features: [
+      'Rich product listing with images and ratings',
+      'Smart search with category filters',
+      'Wishlist and persistent cart',
+      'Secure checkout and order placement',
+      'Order tracking and history',
+      'User profile and address management',
+      'Firebase Auth with email & social login',
+    ],
+    architecture:
+        'Flutter with Provider for cart, wishlist, and auth state. Firebase Firestore for products and orders. Firebase Auth for user management. Firebase Storage for product images.',
+    results:
+        'Delivered a polished, production-ready shopping app. Clean architecture enables easy addition of new product categories and payment gateways with minimal code changes.',
+  ),
+  Project(
+    id: 'expense-tracker',
+    title: 'Expense Tracker',
+    tagline: 'Smart expense management with visual budget insights',
+    description:
+        'A personal finance app for tracking spending, setting budgets, and visualising where money goes — designed for clarity and daily use.',
+    techStack: ['Flutter', 'Firebase', 'Firestore', 'Charts'],
+    categories: ['Mobile Apps', 'Firebase'],
+    overview:
+        'Expense Tracker helps users take control of their finances by logging expenses, categorising spending, and tracking budgets against actual spend. Visual charts make financial patterns easy to understand at a glance.',
+    problem:
+        'Most people lack visibility into their daily spending patterns. Manual tracking in spreadsheets is tedious, and existing apps are either too complex or lack insightful visualisations.',
+    solution:
+        'Built an intuitive Flutter app where adding an expense takes seconds. Firebase syncs data across devices. Pie charts and bar graphs give instant visual feedback on spending categories and monthly trends.',
+    features: [
+      'Quick expense logging with categories and notes',
+      'Budget setting per category with overspend alerts',
+      'Visual spending breakdowns (pie & bar charts)',
+      'Monthly and weekly expense summaries',
+      'Transaction history with search and filter',
+      'Firebase sync across multiple devices',
+      'Export expense reports',
+    ],
+    architecture:
+        'Flutter with Provider/ChangeNotifier for expense state. Firebase Firestore for real-time cloud sync of transactions and budgets. FL Chart library for data visualisation.',
+    results:
+        'Users reported a measurable improvement in budget awareness within the first week of use. Clean UX reduced expense logging time to under 5 seconds per entry.',
+  ),
+  Project(
+    id: 'motogenie',
+    title: 'MotoGenie',
+    tagline: 'Smart vehicle management for bikes and scooties',
+    description:
+        'A vehicle management app tailored for bike and scooty owners, helping them track service history, fuel logs, and maintenance reminders in one place.',
+    techStack: ['Flutter', 'Firebase', 'Firestore', 'Firebase Auth'],
+    categories: ['Mobile Apps', 'Firebase'],
+    overview:
+        'MotoGenie is a dedicated vehicle companion app for two-wheeler owners. It helps users log fuel fill-ups, track servicing history, set maintenance reminders, and monitor vehicle health — all from a clean mobile interface.',
+    problem:
+        'Two-wheeler owners often lose track of service dates, fuel costs, and maintenance schedules, leading to costly repairs and poor vehicle health. There was no dedicated, simple app targeting this specific segment.',
+    solution:
+        'Built MotoGenie with a focus on simplicity and daily utility. Users add their vehicle(s), log fuel and service entries with a few taps, and receive smart reminders before scheduled maintenance is due.',
+    features: [
+      'Multi-vehicle profile management',
+      'Fuel log with mileage/efficiency tracking',
+      'Service history with date and cost records',
+      'Maintenance reminders with push notifications',
+      'Expense summary by vehicle',
+      'Firebase sync for cross-device access',
+      'Clean, two-wheeler-focused UI',
+    ],
+    architecture:
+        'Flutter with Provider for vehicle and log state management. Firebase Firestore for real-time data persistence. Firebase Cloud Messaging for maintenance reminders.',
+    results:
+        'Delivered a purpose-built vehicle management app with intuitive UX. Reminder system proactively notifies users before service is overdue, reducing missed maintenance events.',
+  ),
+  Project(
+    id: 'nexus-forge',
+    title: 'Nexus Forge',
+    tagline: 'Community-building platform connecting people and ideas',
+    description:
+        'A community application that brings people together around shared interests, enabling discussions, collaboration, and connection in a structured, engaging environment.',
+    techStack: ['Flutter', 'Firebase', 'Firestore', 'Firebase Auth'],
+    categories: ['Mobile Apps', 'Firebase', 'Full Stack'],
+    overview:
+        'Nexus Forge is a community platform designed to foster meaningful connections. Users can join interest-based communities, participate in discussions, share content, and collaborate — all in a real-time, Firebase-powered environment.',
+    problem:
+        'Existing community platforms feel either too noisy (like large social networks) or too restrictive. There was a need for a focused, moderated space where communities could organically grow around specific interests.',
+    solution:
+        'Built a Flutter community app where users create or join focused groups, post discussions, and interact in real time. Firebase Firestore powers live feeds and messaging, while Auth ensures secure, identity-verified participation.',
+    features: [
+      'Interest-based community creation and joining',
+      'Real-time discussion feeds with posts and comments',
+      'User profiles with activity history',
+      'Firebase-powered real-time updates',
+      'Content moderation tools for community admins',
+      'Push notifications for new activity',
+      'Search and discover communities',
+    ],
+    architecture:
+        'Flutter with Provider for community and feed state. Firebase Firestore for real-time community data. Firebase Auth for user identity. Cloud Functions for notification triggers and moderation workflows.',
+    results:
+        'Delivered a scalable community platform with real-time capabilities. Architecture supports thousands of concurrent users with Firestore\'s real-time listener model.',
+  ),
+  Project(
+    id: 'support-system',
+    title: 'Support System',
+    tagline: 'Internal issue management platform for company teams',
+    description:
+        'An internal company support and issue management platform where employees can raise, track, and resolve company-related issues efficiently.',
+    techStack: ['Node.js', 'Express.js', 'MongoDB', 'REST APIs'],
+    categories: ['Full Stack', 'Dashboards'],
+    overview:
+        'A dedicated internal support platform that streamlines how employees raise and manage company issues. Built with a Node.js/Express backend and MongoDB, it provides a structured workflow for issue creation, assignment, tracking, and resolution.',
+    problem:
+        'Internal company issues were being reported over chat and email, making tracking, assignment, and resolution chaotic and inconsistent. Teams needed a structured system to manage issue lifecycles.',
+    solution:
+        'Built a web-based internal support platform with a Node.js/Express REST API backend and MongoDB for flexible data storage. Employees raise issues via a clean interface; managers assign, prioritise, and track resolution status in real time.',
+    features: [
+      'Issue creation with category, priority, and description',
+      'Assignment workflow for managers and team leads',
+      'Status tracking: Open → In Progress → Resolved',
+      'Comment threads on each issue for discussion',
+      'Dashboard with issue analytics and resolution metrics',
+      'Role-based access (Employee, Manager, Admin)',
+      'Email notifications on issue updates',
+    ],
+    architecture:
+        'Node.js with Express.js for RESTful API. MongoDB for flexible document-based issue storage. JWT-based authentication with role-based access control. Nodemailer for email notifications.',
+    results:
+        'Reduced issue resolution time by organising and prioritising requests in a structured pipeline. Provided management with clear visibility into recurring problem areas via dashboard analytics.',
   ),
 ];

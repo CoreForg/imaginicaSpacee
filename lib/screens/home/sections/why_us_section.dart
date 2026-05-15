@@ -10,39 +10,48 @@ class WhyUsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isMobile = Responsive.isMobile(context);
+    final isTablet = Responsive.isTablet(context);
 
     final reasons = [
       (
         Icons.bolt_rounded,
         'Fast Delivery',
-        'We ship MVPs in weeks, not months. Agile by default.',
+        'MVPs and full products shipped in weeks. We move at startup speed without compromising quality.',
+        AppColors.accentAmber,
       ),
       (
         Icons.design_services_rounded,
         'Premium UI/UX',
-        'Every pixel matters. We build interfaces people love.',
+        'Every pixel is intentional. We craft interfaces people love using — clean, modern, and conversion-focused.',
+        AppColors.accentPurple,
       ),
       (
         Icons.architecture_rounded,
-        'Scalable Architecture',
-        'Systems built to handle your next 10x growth.',
+        'Scalable Systems',
+        'Built with architecture that handles your next 10x. Clean code, solid patterns, no tech debt shortcuts.',
+        AppColors.accent,
       ),
       (
-        Icons.rocket_launch_rounded,
-        'Startup-First Mindset',
-        'We think like founders. Speed, iteration, and impact.',
+        Icons.price_check_rounded,
+        'Startup-Friendly Pricing',
+        'Enterprise-grade quality without the enterprise price tag. Premium results at pricing that makes sense for your stage.',
+        AppColors.accentGreen,
       ),
       (
         Icons.devices_rounded,
         'Cross-Platform',
-        'One codebase — iOS, Android, Web, Desktop.',
+        'One codebase. iOS, Android, Web, and Desktop — all from a single Flutter project with native performance.',
+        AppColors.accent,
       ),
       (
         Icons.support_agent_rounded,
         'Ongoing Support',
-        'We don\'t disappear at launch. We grow with you.',
+        'We don\'t vanish after launch. We stay, iterate, and grow alongside your product and business.',
+        AppColors.accentGreen,
       ),
     ];
+
+    final crossAxisCount = isMobile ? 1 : (isTablet ? 2 : 3);
 
     return Container(
       width: double.infinity,
@@ -75,39 +84,83 @@ class WhyUsSection extends StatelessWidget {
           ).animate().fadeIn(delay: 100.ms),
           const SizedBox(height: 12),
           ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 560),
+            constraints: const BoxConstraints(maxWidth: 600),
             child: Text(
-              'We combine elite engineering with a startup mindset to help founders and businesses build products that compete at the highest level.',
+              'Premium digital experiences and modern software solutions at startup-friendly pricing. High-quality apps and websites — built for startups and businesses without enterprise-level costs.',
               textAlign: TextAlign.center,
               style: GoogleFonts.inter(
                 color: AppColors.secondaryText,
                 fontSize: 16,
-                height: 1.5,
+                height: 1.6,
               ),
             ),
           ).animate().fadeIn(delay: 150.ms),
           const SizedBox(height: 56),
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: isMobile ? 1 : (Responsive.isTablet(context) ? 2 : 3),
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
-              childAspectRatio: isMobile ? 3.5 : 1.8,
-            ),
-            itemCount: reasons.length,
-            itemBuilder: (context, index) {
-              return _WhyUsCard(
-                icon: reasons[index].$1,
-                title: reasons[index].$2,
-                description: reasons[index].$3,
-                delay: index * 80,
-              );
-            },
+
+          // Cards in wrap layout to avoid fixed-height grid issues
+          _ResponsiveCardGrid(
+            reasons: reasons,
+            crossAxisCount: crossAxisCount,
           ),
+
+          const SizedBox(height: 56),
+
+          // Trust conversion badges
+          _TrustBadgesRow(isMobile: isMobile),
         ],
       ),
+    );
+  }
+}
+
+class _ResponsiveCardGrid extends StatelessWidget {
+  final List<(IconData, String, String, Color)> reasons;
+  final int crossAxisCount;
+
+  const _ResponsiveCardGrid({
+    required this.reasons,
+    required this.crossAxisCount,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final rows = <List<(IconData, String, String, Color)>>[];
+    for (var i = 0; i < reasons.length; i += crossAxisCount) {
+      final end = (i + crossAxisCount).clamp(0, reasons.length);
+      rows.add(reasons.sublist(i, end));
+    }
+
+    return Column(
+      children: rows.asMap().entries.map((rowEntry) {
+        final rowIndex = rowEntry.key;
+        final rowItems = rowEntry.value;
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: rowItems.asMap().entries.map((itemEntry) {
+              final colIndex = itemEntry.key;
+              final item = itemEntry.value;
+              final globalIndex = rowIndex * crossAxisCount + colIndex;
+              return Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: colIndex > 0 ? 8 : 0,
+                    right: colIndex < rowItems.length - 1 ? 8 : 0,
+                  ),
+                  child: _WhyUsCard(
+                    icon: item.$1,
+                    title: item.$2,
+                    description: item.$3,
+                    accentColor: item.$4,
+                    delay: globalIndex * 80,
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
+        );
+      }).toList(),
     );
   }
 }
@@ -116,12 +169,14 @@ class _WhyUsCard extends StatefulWidget {
   final IconData icon;
   final String title;
   final String description;
+  final Color accentColor;
   final int delay;
 
   const _WhyUsCard({
     required this.icon,
     required this.title,
     required this.description,
+    required this.accentColor,
     required this.delay,
   });
 
@@ -136,80 +191,197 @@ class _WhyUsCardState extends State<_WhyUsCard> {
   Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.basic,
-      onEnter: (_) => WidgetsBinding.instance.addPostFrameCallback((_) {
+      onEnter: (_) {
         if (mounted) setState(() => _isHovered = true);
-      }),
-      onExit: (_) => WidgetsBinding.instance.addPostFrameCallback((_) {
+      },
+      onExit: (_) {
         if (mounted) setState(() => _isHovered = false);
-      }),
+      },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 250),
+        curve: Curves.easeOutCubic,
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
-          color: _isHovered ? AppColors.surfaceHighlight : AppColors.background,
+          color: _isHovered
+              ? widget.accentColor.withValues(alpha: 0.05)
+              : AppColors.background,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: _isHovered
-                ? AppColors.accent.withValues(alpha: 0.3)
+                ? widget.accentColor.withValues(alpha: 0.35)
                 : AppColors.border,
+            width: _isHovered ? 1.5 : 1,
           ),
           boxShadow: _isHovered
               ? [
                   BoxShadow(
-                    color: AppColors.accent.withValues(alpha: 0.06),
-                    blurRadius: 20,
+                    color: widget.accentColor.withValues(alpha: 0.08),
+                    blurRadius: 24,
+                    spreadRadius: 1,
                     offset: const Offset(0, 8),
                   ),
                 ]
               : [],
         ),
-        child: Row(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             AnimatedContainer(
               duration: const Duration(milliseconds: 250),
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: _isHovered
-                    ? AppColors.accent.withValues(alpha: 0.15)
+                    ? widget.accentColor.withValues(alpha: 0.15)
                     : AppColors.surfaceHighlight,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(
                 widget.icon,
-                color: _isHovered ? AppColors.accent : AppColors.secondaryText,
+                color: _isHovered ? widget.accentColor : AppColors.secondaryText,
                 size: 22,
               ),
             ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    widget.title,
-                    style: GoogleFonts.inter(
-                      color: AppColors.primaryText,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    widget.description,
-                    style: GoogleFonts.inter(
-                      color: AppColors.secondaryText,
-                      fontSize: 13,
-                      height: 1.5,
-                    ),
-                  ),
-                ],
+            const SizedBox(height: 16),
+            Text(
+              widget.title,
+              style: GoogleFonts.inter(
+                color: AppColors.primaryText,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              widget.description,
+              style: GoogleFonts.inter(
+                color: AppColors.secondaryText,
+                fontSize: 13,
+                height: 1.55,
               ),
             ),
           ],
         ),
-      ).animate().fadeIn(delay: widget.delay.ms).slideY(begin: 0.1),
+      ).animate().fadeIn(delay: widget.delay.ms).slideY(begin: 0.08),
     );
+  }
+}
+
+class _TrustBadgesRow extends StatelessWidget {
+  final bool isMobile;
+  const _TrustBadgesRow({required this.isMobile});
+
+  @override
+  Widget build(BuildContext context) {
+    final badges = [
+      (Icons.speed_rounded, 'Fast Delivery'),
+      (Icons.price_check_rounded, 'Affordable'),
+      (Icons.brush_rounded, 'Clean UI/UX'),
+      (Icons.devices_other_rounded, 'Cross-Platform'),
+      (Icons.trending_up_rounded, 'Scalable'),
+      (Icons.verified_rounded, 'Reliable'),
+    ];
+
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          decoration: BoxDecoration(
+            color: AppColors.accent.withValues(alpha: 0.08),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: AppColors.accent.withValues(alpha: 0.2)),
+          ),
+          child: Text(
+            'What you get with every project',
+            style: GoogleFonts.inter(
+              color: AppColors.accent,
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.3,
+            ),
+          ),
+        ).animate().fadeIn(delay: 200.ms),
+        const SizedBox(height: 24),
+        Wrap(
+          alignment: WrapAlignment.center,
+          spacing: 10,
+          runSpacing: 10,
+          children: badges.asMap().entries.map((entry) {
+            final badge = entry.value;
+            return _TrustBadge(
+              icon: badge.$1,
+              label: badge.$2,
+              delay: entry.key * 60,
+            );
+          }).toList(),
+        ).animate().fadeIn(delay: 300.ms),
+      ],
+    );
+  }
+}
+
+class _TrustBadge extends StatefulWidget {
+  final IconData icon;
+  final String label;
+  final int delay;
+
+  const _TrustBadge({
+    required this.icon,
+    required this.label,
+    required this.delay,
+  });
+
+  @override
+  State<_TrustBadge> createState() => _TrustBadgeState();
+}
+
+class _TrustBadgeState extends State<_TrustBadge> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.basic,
+      onEnter: (_) {
+        if (mounted) setState(() => _isHovered = true);
+      },
+      onExit: (_) {
+        if (mounted) setState(() => _isHovered = false);
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        decoration: BoxDecoration(
+          color: _isHovered ? AppColors.surfaceHighlight : AppColors.background,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: _isHovered ? AppColors.borderHighlight : AppColors.border,
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              widget.icon,
+              size: 15,
+              color: _isHovered ? AppColors.accent : AppColors.mutedText,
+            ),
+            const SizedBox(width: 8),
+            Text(
+              widget.label,
+              style: GoogleFonts.inter(
+                color: _isHovered ? AppColors.primaryText : AppColors.secondaryText,
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+      ),
+    ).animate().fadeIn(delay: widget.delay.ms).scale(
+          begin: const Offset(0.95, 0.95),
+          duration: 300.ms,
+          curve: Curves.easeOutBack,
+        );
   }
 }

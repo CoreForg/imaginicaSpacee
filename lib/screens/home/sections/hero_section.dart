@@ -68,7 +68,7 @@ class HeroSection extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     Text(
-                      'Imaginica Space — Premium Digital Product Studio',
+                      'Imaginica Space — Affordable Premium Digital Studio',
                       style: GoogleFonts.inter(
                         color: AppColors.accent,
                         fontSize: 13,
@@ -101,7 +101,7 @@ class HeroSection extends StatelessWidget {
               ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 680),
                 child: Text(
-                  'We design and develop mobile apps, scalable SaaS platforms, AI-powered products, and startup MVPs — built for speed, scale, and exceptional user experience.',
+                  'High-quality apps, SaaS platforms, and digital products — built for startups and businesses with premium UI/UX and modern technology, at startup-friendly pricing.',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.inter(
                     color: AppColors.secondaryText,

@@ -14,6 +14,7 @@ import 'sections/about_section.dart';
 import 'sections/faq_section.dart';
 import 'sections/contact_section.dart';
 import 'sections/footer_section.dart';
+import 'sections/coming_soon_section.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -41,6 +42,7 @@ class HomeScreen extends StatelessWidget {
                 AboutSection(key: navProvider.sectionKeys['about']),
                 const FAQSection(),
                 ContactSection(key: navProvider.sectionKeys['contact']),
+                const ComingSoonSection(),
                 const FooterSection(),
               ],
             ),

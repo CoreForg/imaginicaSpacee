@@ -66,7 +66,7 @@ class TrustBarSection extends StatelessWidget {
                 const SizedBox(width: 12),
                 Flexible(
                   child: Text(
-                    'Enterprise Experience: CRIS Internship · Flutter-based IRCTC Rail Connect Migration · Shunya Agritech',
+                    'Startup-focused development · Scalable apps & SaaS · Affordable premium solutions · Cross-platform systems',
                     style: GoogleFonts.inter(
                       color: AppColors.secondaryText,
                       fontSize: 13,
@@ -106,12 +106,12 @@ class _SkillChipState extends State<_SkillChip> {
   Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
-      onEnter: (_) => WidgetsBinding.instance.addPostFrameCallback((_) {
+      onEnter: (_) {
         if (mounted) setState(() => _isHovered = true);
-      }),
-      onExit: (_) => WidgetsBinding.instance.addPostFrameCallback((_) {
+      },
+      onExit: (_) {
         if (mounted) setState(() => _isHovered = false);
-      }),
+      },
       child: GestureDetector(
         onTap: widget.onTap,
         child: AnimatedContainer(
@@ -121,7 +121,9 @@ class _SkillChipState extends State<_SkillChip> {
             color: _isHovered ? AppColors.surfaceHighlight : Colors.transparent,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: _isHovered ? AppColors.accent.withValues(alpha: 0.5) : AppColors.border,
+              color: _isHovered
+                  ? AppColors.accent.withValues(alpha: 0.5)
+                  : AppColors.border,
             ),
           ),
           child: Row(

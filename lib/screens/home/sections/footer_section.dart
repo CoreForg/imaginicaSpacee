@@ -42,13 +42,49 @@ class FooterSection extends StatelessWidget {
           const SizedBox(height: 40),
           const Divider(color: AppColors.border),
           const SizedBox(height: 24),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('© 2024 Imaginica Space. All rights reserved.', style: GoogleFonts.inter(color: AppColors.secondaryText, fontSize: 13)),
-              Text('imaginica.space', style: GoogleFonts.inter(color: AppColors.mutedText, fontSize: 13)),
-            ],
-          ),
+          isMobile
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '© 2026 Imaginica Space. All rights reserved.',
+                      style: GoogleFonts.inter(color: AppColors.secondaryText, fontSize: 13),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      'Building digital products for the future.',
+                      style: GoogleFonts.inter(
+                        color: AppColors.mutedText,
+                        fontSize: 12,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  ],
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '© 2026 Imaginica Space. All rights reserved.',
+                          style: GoogleFonts.inter(color: AppColors.secondaryText, fontSize: 13),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          'Building digital products for the future.',
+                          style: GoogleFonts.inter(
+                            color: AppColors.mutedText,
+                            fontSize: 12,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text('imaginica.space', style: GoogleFonts.inter(color: AppColors.mutedText, fontSize: 13)),
+                  ],
+                ),
         ],
       ),
     );
@@ -156,12 +192,12 @@ class _FooterLinkState extends State<_FooterLink> {
       padding: const EdgeInsets.only(bottom: 8),
       child: MouseRegion(
         cursor: widget.url != null ? SystemMouseCursors.click : SystemMouseCursors.basic,
-        onEnter: (_) => WidgetsBinding.instance.addPostFrameCallback((_) {
+        onEnter: (_) {
           if (mounted) setState(() => _isHovered = true);
-        }),
-        onExit: (_) => WidgetsBinding.instance.addPostFrameCallback((_) {
+        },
+        onExit: (_) {
           if (mounted) setState(() => _isHovered = false);
-        }),
+        },
         child: GestureDetector(
           onTap: widget.url != null ? () => widget.launch(widget.url!) : null,
           child: AnimatedDefaultTextStyle(
@@ -193,8 +229,8 @@ class _SocialRow extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Follow', style: GoogleFonts.inter(color: AppColors.secondaryText, fontSize: 13)),
-        const SizedBox(height: 12),
+        Text('Connect', style: GoogleFonts.inter(color: AppColors.mutedText, fontSize: 12, letterSpacing: 0.8, fontWeight: FontWeight.w500)),
+        const SizedBox(height: 10),
         Row(
           children: socials.map((s) => _SocialIcon(icon: s.$1, url: s.$2, launch: launch)).toList(),
         ),
@@ -223,12 +259,12 @@ class _SocialIconState extends State<_SocialIcon> {
       padding: const EdgeInsets.only(right: 8),
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
-        onEnter: (_) => WidgetsBinding.instance.addPostFrameCallback((_) {
+        onEnter: (_) {
           if (mounted) setState(() => _isHovered = true);
-        }),
-        onExit: (_) => WidgetsBinding.instance.addPostFrameCallback((_) {
+        },
+        onExit: (_) {
           if (mounted) setState(() => _isHovered = false);
-        }),
+        },
         child: GestureDetector(
           onTap: () => widget.launch(widget.url),
           child: AnimatedContainer(
