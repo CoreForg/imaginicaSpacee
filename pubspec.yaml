@@ -38,6 +38,7 @@ dependencies:
   flutter_animate: ^4.5.2
   url_launcher: ^6.3.2
   provider: ^6.1.5+1
+  video_player: ^2.11.1
 
 dev_dependencies:
   flutter_test:
@@ -61,9 +62,13 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/screenshorts/supplix_web/
+    - assets/screenshorts/nexusforge/
+    - assets/screenshorts/expensetracker/
+    - assets/screenshorts/support_system/
+    - assets/videos/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
