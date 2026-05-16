@@ -497,72 +497,113 @@ class _ProjectBanner extends StatelessWidget {
               ],
             ),
           ),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              // Background glow effect
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 350),
-                width: isHovered ? 120 : 80,
-                height: isHovered ? 120 : 80,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: RadialGradient(
-                    colors: [
-                      accentColor.withValues(alpha: isHovered ? 0.18 : 0.08),
-                      Colors.transparent,
-                    ],
-                  ),
-                ),
-              ),
-              // Project icon
-              AnimatedScale(
-                scale: isHovered ? 1.12 : 1.0,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeOutBack,
-                child: Icon(
-                  icon,
-                  size: 48,
-                  color: accentColor.withValues(alpha: isHovered ? 0.7 : 0.4),
-                ),
-              ),
-              // "View Case Study" badge
-              Positioned(
-                bottom: 12,
-                right: 14,
-                child: AnimatedOpacity(
-                  opacity: isHovered ? 1.0 : 0.0,
-                  duration: const Duration(milliseconds: 200),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: AppColors.background.withValues(alpha: 0.9),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                          color: accentColor.withValues(alpha: 0.4)),
+          child: project.screenshots.isNotEmpty
+              ? Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    ClipRRect(
+                      child: AnimatedScale(
+                        scale: isHovered ? 1.05 : 1.0,
+                        duration: const Duration(milliseconds: 350),
+                        curve: Curves.easeOutCubic,
+                        child: Image.asset(
+                          project.screenshots.first,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) => Container(color: AppColors.surfaceHighlight),
+                        ),
+                      ),
                     ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(Icons.open_in_new,
-                            size: 11, color: accentColor),
-                        const SizedBox(width: 5),
-                        Text(
-                          'Case Study',
-                          style: GoogleFonts.inter(
-                            color: accentColor,
-                            fontSize: 11,
-                            fontWeight: FontWeight.w600,
+                    // Dark gradient overlay
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.transparent,
+                            Colors.black.withValues(alpha: isHovered ? 0.5 : 0.3),
+                          ],
+                        ),
+                      ),
+                    ),
+                    // View badge
+                    Positioned(
+                      bottom: 12, right: 14,
+                      child: AnimatedOpacity(
+                        opacity: isHovered ? 1.0 : 0.0,
+                        duration: const Duration(milliseconds: 200),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: AppColors.background.withValues(alpha: 0.9),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: accentColor.withValues(alpha: 0.4)),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.open_in_new, size: 11, color: accentColor),
+                              const SizedBox(width: 5),
+                              Text('Case Study', style: GoogleFonts.inter(color: accentColor, fontSize: 11, fontWeight: FontWeight.w600)),
+                            ],
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
+                )
+              : Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 350),
+                      width: isHovered ? 120 : 80,
+                      height: isHovered ? 120 : 80,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: RadialGradient(
+                          colors: [
+                            accentColor.withValues(alpha: isHovered ? 0.18 : 0.08),
+                            Colors.transparent,
+                          ],
+                        ),
+                      ),
+                    ),
+                    AnimatedScale(
+                      scale: isHovered ? 1.12 : 1.0,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeOutBack,
+                      child: Icon(
+                        icon,
+                        size: 48,
+                        color: accentColor.withValues(alpha: isHovered ? 0.7 : 0.4),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 12, right: 14,
+                      child: AnimatedOpacity(
+                        opacity: isHovered ? 1.0 : 0.0,
+                        duration: const Duration(milliseconds: 200),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: AppColors.background.withValues(alpha: 0.9),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: accentColor.withValues(alpha: 0.4)),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.open_in_new, size: 11, color: accentColor),
+                              const SizedBox(width: 5),
+                              Text('Case Study', style: GoogleFonts.inter(color: accentColor, fontSize: 11, fontWeight: FontWeight.w600)),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
         ),
       ),
     );
