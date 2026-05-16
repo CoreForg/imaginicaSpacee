@@ -99,9 +99,16 @@
     This is useful to provide a custom configuration to the Flutter loader
     or to give the user feedback during the initialization process.
 
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
-  -->
+  <script>
+    // Hide the loader with a fade once Flutter renders its first frame
+    window.addEventListener('flutter-first-frame', function () {
+      var loader = document.getElementById('loading-indicator');
+      if (loader) {
+        loader.classList.add('hidden');
+        setTimeout(function () { loader.style.display = 'none'; }, 450);
+      }
+    });
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
