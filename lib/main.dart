@@ -11,27 +11,34 @@ import 'providers/testimonial_provider.dart';
 import 'router/app_router.dart';
 import 'services/auth_service.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
   usePathUrlStrategy();
-  try {
-    await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform);
-  } catch (_) {
-    // Firebase already initialized or config error — app continues
-  }
   final authService = AuthService();
+  final statsProvider = StatsProvider();
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: authService),
         ChangeNotifierProvider(create: (_) => HomeNavigationProvider()),
         ChangeNotifierProvider(create: (_) => TestimonialProvider()),
-        ChangeNotifierProvider(create: (_) => StatsProvider()),
+        ChangeNotifierProvider.value(value: statsProvider),
       ],
       child: ImaginicaApp(router: buildRouter(authService)),
     ),
   );
+  _initializeFirebase(statsProvider);
+}
+
+Future<void> _initializeFirebase(StatsProvider statsProvider) async {
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    statsProvider.startSync();
+  } catch (_) {
+    // The public site can run with local defaults if Firebase is unavailable.
+  }
 }
 
 class ImaginicaApp extends StatelessWidget {

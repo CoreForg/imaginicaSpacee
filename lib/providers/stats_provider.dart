@@ -10,11 +10,18 @@ class StatsProvider extends ChangeNotifier {
   List<StatItem> _stats = StatItem.defaults;
   StreamSubscription<List<StatItem>>? _sub;
 
-  StatsProvider() {
-    _sub = _service.statsStream().listen((stats) {
-      _stats = stats;
-      notifyListeners();
-    });
+  void startSync() {
+    if (_sub != null) return;
+    _sub = _service.statsStream().listen(
+      (stats) {
+        _stats = stats;
+        notifyListeners();
+      },
+      onError: (_) {
+        _stats = StatItem.defaults;
+        notifyListeners();
+      },
+    );
   }
 
   List<StatItem> get stats => _stats;

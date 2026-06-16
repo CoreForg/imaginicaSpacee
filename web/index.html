@@ -53,15 +53,16 @@
       overflow: hidden;
     }
     .loading-container {
-      display: none; /* Hidden by default on desktop */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      transition: opacity 280ms ease, transform 280ms ease;
     }
-    @media (max-width: 850px) {
-      .loading-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 24px;
-      }
+    .loading-container.hidden {
+      opacity: 0;
+      transform: scale(0.98);
+      pointer-events: none;
     }
     .logo-pulse {
       width: 80px;
@@ -76,6 +77,12 @@
       border-top-color: #3B82F6;
       border-radius: 50%;
       animation: spin 1s linear infinite;
+    }
+    .loading-text {
+      color: #E5E7EB;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 0;
     }
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
@@ -93,11 +100,13 @@
   <div class="loading-container" id="loading-indicator">
     <img src="icons/Icon-192.png" alt="Imaginica Space Loading" class="logo-pulse" />
     <div class="spinner"></div>
+    <div class="loading-text">Launching Imaginica Space</div>
   </div>
   <!--
     You can customize the "flutter_bootstrap.js" script.
     This is useful to provide a custom configuration to the Flutter loader
     or to give the user feedback during the initialization process.
+  -->
 
   <script>
     // Hide the loader with a fade once Flutter renders its first frame
